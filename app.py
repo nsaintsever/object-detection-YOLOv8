@@ -40,6 +40,7 @@ elif model_type == 'Segmentation':
     model_path = "weights/yolov8l-seg.pt"
 # Load YOLO Pre-trained ML Model
 try:
+    st.cache_resource()
     model = model.load_model(model_path)
 except Exception as ex:
     st.error(f"Unable to load model. Check the specified path: {model_path}")
