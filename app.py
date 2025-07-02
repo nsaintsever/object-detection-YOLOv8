@@ -59,7 +59,6 @@ def load_model(model_type):
 # Selecting Detection Or Segmentation - Up to user - Here model L puis v8n and v8m are also available -- UPDATED avec LA VERSION 11 DEPUIS
 try:
     model = load_model(model_type)
-    st.success("Modèle chargé avec succès !")
 except Exception:
     st.error("Impossible de charger le modèle - vérifie les logs")
     st.stop()
@@ -70,7 +69,6 @@ except Exception:
 st.sidebar.markdown("")
 st.sidebar.markdown("")
 st.title("Demo app : Upload your image")
-st.write("Contenu du dossier weights:", list(Path("weights").glob("*")))
 
 
 # Setting subheader
