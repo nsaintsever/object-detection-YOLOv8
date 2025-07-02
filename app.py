@@ -10,7 +10,7 @@ import model
 
 # Setting page layout
 st.set_page_config(
-    page_title="Object Detection and Segmentation using OpenCV's YOLO-v8 model",
+    page_title="Object Detection and Segmentation using OpenCV's YOLO-v11 model",
     page_icon="https://www.emoji.co.uk/files/twitter-emojis/objects-twitter/11072-right-pointing-magnifying-glass.png",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -33,11 +33,11 @@ st.sidebar.markdown("")
 st.sidebar.markdown("<h4 style='margin: 0; padding: 0;'>Select Model Confidence (Treshold)</h4>", unsafe_allow_html=True)
 confidence = float(st.sidebar.slider('', 20, 100, 40)) / 100
 
-# Selecting Detection Or Segmentation - Up to user - Here model L puis v8n and v8m are also available
+# Selecting Detection Or Segmentation - Up to user - Here model L puis v8n and v8m are also available -- UPDATED avec LA VERSION 11 DEPUIS
 if model_type == 'Detection':
-    model_path = "weights/yolov8l.pt"
+    model_path = "weights/yolo11l.pt"
 elif model_type == 'Segmentation':
-    model_path = "weights/yolov8l-seg.pt"
+    model_path = "weights/yolo11l-seg.pt"
 # Load YOLO Pre-trained ML Model
 try:
     st.cache_resource()
@@ -53,7 +53,7 @@ st.sidebar.markdown("")
 st.title("Demo app : Upload your image")
 
 # Setting subheader
-st.subheader("Object Detection and Segmentation using OpenCV's YOLO-v8 model")
+st.subheader("Object Detection and Segmentation using OpenCV's YOLO-v11 model")
 
 # If image is selected
 st.sidebar.markdown("<h4 style='margin: 0; padding: 0;'>Choose an image</h4>", unsafe_allow_html=True)
