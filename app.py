@@ -36,19 +36,34 @@ st.sidebar.markdown("")
 st.sidebar.markdown("<h4 style='margin: 0; padding: 0;'>Select Model Confidence (Treshold)</h4>", unsafe_allow_html=True)
 confidence = float(st.sidebar.slider('', 20, 100, 40)) / 100
 
+@st.cache_resource
+def load_model(model_type):
+    try:
+        model_path = f"weights/yolo11l{'-seg' if model_type == 'Segmentation' else ''}.pt"
+
+        # Debug supplémentaire
+        st.write(f"Tentative de chargement de: {model_path}")
+
+        # Chargement avec vérification
+        model = YOLO(model_path)
+        if not hasattr(model, 'names'):  # Vérification basique que le modèle est bien chargé
+            raise ValueError("Modèle corrompu ou non valide")
+        return model
+    except Exception as e:
+        st.error(f"Échec du chargement du modèle: {str(e)}")
+        st.error(f"Type d'erreur: {type(e).__name__}")
+        raise
+
+
 # Selecting Detection Or Segmentation - Up to user - Here model L puis v8n and v8m are also available -- UPDATED avec LA VERSION 11 DEPUIS
-if model_type == 'Detection':
-    model_path = "weights/yolo11l.pt"
-elif model_type == 'Segmentation':
-    model_path = "weights/yolo11l-seg.pt"
-# Load YOLO Pre-trained ML Model
 try:
-    st.cache_resource()
-    model = model.load_model(model_path)
-except Exception as ex:
-    st.error(f"Unable to load model. Check the specified path: {model_path}")
-    st.error(ex)
-source_img = None
+    model = load_model(model_type)
+    st.success("Modèle chargé avec succès !")
+except Exception:
+    st.error("Impossible de charger le modèle - vérifie les logs")
+    st.stop()
+
+
 
 #Adding empty mardown to add an empty line
 st.sidebar.markdown("")
