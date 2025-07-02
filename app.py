@@ -3,6 +3,7 @@ from pathlib import Path
 import PIL
 import streamlit as st
 import sys
+from ultralytics import YOLO
 
 # Local Modules
 import model
