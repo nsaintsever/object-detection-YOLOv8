@@ -2,11 +2,14 @@
 from pathlib import Path
 import PIL
 import streamlit as st
-
+import sys
 
 # Local Modules
 import model
-
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent))  # Ajoute le répertoire courant au path
+from model import load_model
 
 # Setting page layout
 st.set_page_config(
