@@ -41,10 +41,6 @@ confidence = float(st.sidebar.slider('', 20, 100, 40)) / 100
 def load_model(model_type):
     try:
         model_path = f"weights/yolo11l{'-seg' if model_type == 'Segmentation' else ''}.pt"
-
-        # Debug supplémentaire
-        st.write(f"Tentative de chargement de: {model_path}")
-
         # Chargement avec vérification
         model = YOLO(model_path)
         if not hasattr(model, 'names'):  # Vérification basique que le modèle est bien chargé
