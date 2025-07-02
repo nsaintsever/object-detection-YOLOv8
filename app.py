@@ -54,6 +54,8 @@ source_img = None
 st.sidebar.markdown("")
 st.sidebar.markdown("")
 st.title("Demo app : Upload your image")
+st.write("Contenu du dossier weights:", list(Path("weights").glob("*")))
+
 
 # Setting subheader
 st.subheader("Object Detection and Segmentation using OpenCV's YOLO-v11 model")
